@@ -29,7 +29,7 @@ public class Program
            System.out.println(sel);
            
            SellerDao sellerDao = DaoFactory.createSellerDao();
-           
+           System.out.println("=====test findById=====");
            Seller selo = sellerDao.findById(scan.nextInt());
            System.out.println();
            System.out.println(selo);
