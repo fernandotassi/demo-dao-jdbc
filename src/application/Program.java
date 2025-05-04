@@ -3,6 +3,7 @@ package application;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -34,8 +35,15 @@ public class Program
            System.out.println();
            System.out.println(selo);
            
-           
-           
+           System.out.println("=====test findByDepartment=====");
+           Department depo = new Department(scan.nextInt(), null);
+           List<Seller> list = sellerDao.findByDepartment(depo);
+           System.out.println();
+           for(Seller s: list) 
+           {
+        	   System.out.println(s);
+        	   System.out.println();
+           }
            
            
            
