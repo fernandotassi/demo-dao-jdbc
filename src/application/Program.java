@@ -30,9 +30,9 @@ public class Program
            
            SellerDao sellerDao = DaoFactory.createSellerDao();
            
-           
-           
-           
+           Seller selo = sellerDao.findById(scan.nextInt());
+           System.out.println();
+           System.out.println(selo);
            
            
            
