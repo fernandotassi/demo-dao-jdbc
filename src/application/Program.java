@@ -6,6 +6,8 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.Scanner;
 
+import model.dao.DaoFactory;
+import model.dao.SellerDao;
 import model.entities.Department;
 import model.entities.Seller;
 
@@ -26,6 +28,7 @@ public class Program
            Seller sel = new Seller(1, "bob", "bob@gmail.com", sdf.parse("1980-05-12"), 3200., dep);    
            System.out.println(sel);
            
+           SellerDao sellerDao = DaoFactory.createSellerDao();
            
            
            
