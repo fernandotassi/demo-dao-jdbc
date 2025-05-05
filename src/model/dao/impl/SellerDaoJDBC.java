@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -22,9 +23,38 @@ public class SellerDaoJDBC implements SellerDao
 	public SellerDaoJDBC(Connection conn){this.conn = conn;}
 
 	@Override
-	public void insert(Seller sel) {
-		// TODO Auto-generated method stub
-		
+	public void insert(Seller sel) 
+	{
+		 PreparedStatement ps = null;
+		 ResultSet rs = null;
+		 try
+		 {
+			 ps = conn.prepareStatement("insert into seller "
+					                    + "(Name, Email, BirthDate, BaseSalary, DepartmentID) "
+					                    + "values(?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+			 ps.setString(1, sel.getName());
+			 ps.setString(2, sel.getEmail());
+			 ps.setDate(3, new java.sql.Date(sel.getBirthDate().getTime()));
+			 ps.setDouble(4, sel.getBaseSalary());
+			 ps.setInt(5, sel.getDepartment().getId());
+			 
+			int rows = ps.executeUpdate();
+			if(rows > 0)
+			{	
+				rs = ps.getGeneratedKeys();
+				if(rs.next())
+				{	
+					int id = rs.getInt(1);
+					sel.setId(id);
+				}	
+			}
+			else
+				throw new DbException("erro! nenhuma linha afetada!");
+		 }
+		 catch(SQLException e)
+		 {throw new DbException(e.getMessage());}
+		 finally
+		 {DB.closeResultSet(rs); DB.closeStatement(ps);}
 	}
 
 	@Override

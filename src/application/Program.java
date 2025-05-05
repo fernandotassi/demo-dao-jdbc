@@ -50,8 +50,11 @@ public class Program
            for(Seller l: list)
         	   System.out.println(l);
            
-           
-           
+           System.out.println("=====insert=====");
+           Department depa = new Department(5, "ferragem");
+           Seller sela = new Seller(9, "josé yellow", "jose@gmail.com", sdf.parse("2000-08-02"), 2700., depa);   
+           sellerDao.insert(sela);
+           System.out.println("feito! id: " + sela.getId());
            
            
            
