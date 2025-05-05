@@ -36,7 +36,8 @@ public class Program
            System.out.println(selo);
            
            System.out.println("=====test findByDepartment=====");
-           Department depo = new Department(scan.nextInt(), null);
+           Department depo = new Department();
+           depo.setId(scan.nextInt());
            List<Seller> list = sellerDao.findByDepartment(depo);
            System.out.println();
            for(Seller s: list) 
@@ -44,7 +45,10 @@ public class Program
         	   System.out.println(s);
         	   System.out.println();
            }
-           
+           System.out.println("=====findAll=====");
+           list = sellerDao.findAll();
+           for(Seller l: list)
+        	   System.out.println(l);
            
            
            
