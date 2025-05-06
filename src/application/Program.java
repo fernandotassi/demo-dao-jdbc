@@ -66,8 +66,10 @@ public class Program
              sellerDao.update(sel);
              System.out.println("complete!");
            
-           
-           
+             System.out.println("=====delete=====");
+             System.out.print("ID : ");
+             sellerDao.deleteById(scan.nextInt());
+            
            
            
            
